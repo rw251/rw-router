@@ -4,7 +4,8 @@
   "description": "Extremely small client side routing engine",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "cover": "node ./node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
   },
   "author": {
     "name": "Richard Williams",
@@ -18,9 +19,11 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.1.2",
+    "coveralls": "^3.0.2",
     "eslint": "^5.4.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "istanbul": "^0.4.5",
     "mocha": "^5.2.0"
   }
 }
