@@ -7,16 +7,16 @@
     "test": "mocha --reporter spec",
     "cover": "node ./node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
   },
-  "author": {
-    "name": "Richard Williams",
-    "email": "1234richardwilliams@gmail.com",
-    "url": "https://rw251.github.io"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/rw251/rw-router.git"
   },
+  "author": "Richard Williams <1234richardwilliams@gmail.com> (https://rw251.github.io)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rw251/rw-templater/issues"
+  },
+  "homepage": "https://github.com/rw251/rw-templater#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "coveralls": "^3.0.2",
@@ -24,6 +24,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "sinon": "^6.1.5"
   }
 }

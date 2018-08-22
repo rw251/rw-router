@@ -1,22 +1,3 @@
-// Minimalistic router inspired (nicked) largely from http://krasimirtsonev.com/blog/article/A-modern-JavaScript-router-in-100-lines-history-api-pushState-hash-url
-
-// Usage
-
-// import {Router} from './rw-router'
-// Router.config(); // wires everything up - also converts <a> tags with data-href into route links
-// Router.navigate(); // navigate to the home page
-// Router
-//  .add('', () => {
-//     document.getElementById('main').innerText = 'DEFAULT PAGE';
-//  })
-//  .add(/about/, () => {
-//     document.getElementById('main').innerText = 'ABOUT';
-//  })
-//  .listen()
-//
-// Then if you want to navigate call Router.navigate('blah;);
-
-
 exports.Router = {
   routes: [],
   current: '',
