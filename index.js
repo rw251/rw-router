@@ -4,23 +4,18 @@ exports.Router = {
 
   // do something if pushstate is not supported
   config() {
+    if (!window.history.pushState) return false;
     // Wire up any <a> tags with a data-href attribute
-    [].slice.call(document.querySelectorAll('[data-href]')).forEach((link) => {
-      if (!link.hasListenerAttached) {
-        link.addEventListener('click', (e) => {
-          if ((e.ctrlKey || e.metaKey) && e.target.tagName.toLowerCase() === 'a') {
-            return false;
-          }
-          const location = link.dataset.href;
+    document.addEventListener('click', (event) => {
+      const element = event.target;
+      if (element.tagName.toLowerCase() === 'a' && element.dataset && element.dataset.href) {
+        const location = element.dataset.href;
 
-          e.preventDefault();
-          return this.navigate(location);
-        });
-        link.href = '#';
-        link.hasListenerAttached = true;
+        event.preventDefault();
+        this.navigate(location);
       }
     });
-    return window.history.pushState ? this : false;
+    return this;
   },
 
   // remove leading and trailing slashes
