@@ -4,8 +4,8 @@
   "description": "Extremely small client side routing engine",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec",
-    "cover": "node ./node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
+    "test": "mocha --require babel-register --reporter spec",
+    "cover": "nyc --reporter=lcov node_modules/mocha/bin/_mocha --require babel-register -R spec test/*"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/rw251/rw-templater#readme",
   "devDependencies": {
+    "babel-istanbul": "^0.12.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.2",
     "eslint": "^5.4.0",
@@ -27,6 +30,7 @@
     "jsdom": "12.0.0",
     "jsdom-global": "3.0.2",
     "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
     "sinon": "^6.1.5",
     "sinon-chai": "^3.2.0"
   }

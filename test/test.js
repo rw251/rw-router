@@ -1,7 +1,9 @@
+import Router from '../index';
+
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
 const sinon = require('sinon');
-const { Router } = require('../index');
+
 require('jsdom-global')(null, { url: 'http://smash/' });
 
 chai.use(sinonChai);

@@ -1,4 +1,4 @@
-exports.Router = {
+export default {
   routes: [],
   current: '',
 
