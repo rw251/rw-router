@@ -103,13 +103,28 @@ describe('#rw-router', () => {
     expect(Router.navigate).to.have.not.been.called;
     Router.navigate = navigate;
   });
-  it('allows url change without navigation', (done) => {
+  it('allows url change without navigation - no history update', (done) => {
     const { check } = Router;
     Router.check = sinon.stub();
+    const currentHistorySize = window.history.length;
     Router.shift('/a/new/url');
     setTimeout(() => {
       expect(Router.check).to.have.not.been.called;
       expect(Router.current).to.equal('a/new/url');
+      expect(window.history.length).to.equal(currentHistorySize);
+      Router.check = check;
+      done();
+    }, 200);
+  });
+  it('allows url change without navigation - with history update', (done) => {
+    const { check } = Router;
+    Router.check = sinon.stub();
+    const currentHistorySize = window.history.length;
+    Router.shift('/a/new/url', true);
+    setTimeout(() => {
+      expect(Router.check).to.have.not.been.called;
+      expect(Router.current).to.equal('a/new/url');
+      expect(window.history.length).to.equal(currentHistorySize + 1);
       Router.check = check;
       done();
     }, 200);

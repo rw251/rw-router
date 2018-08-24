@@ -49,8 +49,9 @@ exports.Router = {
   },
 
   // allow moving to url without firing
-  shift(url) {
-    window.history.replaceState(null, null, `/${this.clearSlashes(url)}`);
+  shift(url, addToHistory) {
+    if (addToHistory) window.history.pushState(null, null, `/${this.clearSlashes(url)}`);
+    else window.history.replaceState(null, null, `/${this.clearSlashes(url)}`);
     this.current = `${this.clearSlashes(url)}`;
   },
 
