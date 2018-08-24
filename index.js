@@ -8,7 +8,7 @@ export default {
     // Wire up any <a> tags with a data-href attribute
     document.addEventListener('click', (event) => {
       const element = event.target;
-      if (element.tagName.toLowerCase() === 'a' && element.dataset && element.dataset.href) {
+      if (element.dataset && element.dataset.href) {
         const location = element.dataset.href;
 
         event.preventDefault();
