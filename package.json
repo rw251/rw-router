@@ -1,6 +1,6 @@
 {
   "name": "rw-router",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Extremely small client side routing engine",
   "main": "index.js",
   "scripts": {
