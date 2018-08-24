@@ -103,13 +103,16 @@ describe('#rw-router', () => {
     expect(Router.navigate).to.have.not.been.called;
     Router.navigate = navigate;
   });
-  it('allows url change without navigation', () => {
+  it('allows url change without navigation', (done) => {
     const { check } = Router;
     Router.check = sinon.stub();
     Router.shift('/a/new/url');
-    expect(Router.check).to.have.not.been.called;
-    expect(Router.current).to.equal('/a/new/url');
-    Router.check = check;
+    setTimeout(() => {
+      expect(Router.check).to.have.not.been.called;
+      expect(Router.current).to.equal('a/new/url');
+      Router.check = check;
+      done();
+    }, 200);
   });
   after(() => {
     clearInterval(Router.interval);
