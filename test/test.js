@@ -14,6 +14,19 @@ const { expect } = chai;
 // delete window.location;
 // window.location = { pathname: '', search: '' };
 
+const createNestedLink = (title, href) => {
+  const td = document.createElement('td');
+  if (href) td.dataset.href = href;
+
+  const a = document.createElement('a');
+  const linkText = document.createTextNode(title);
+  a.appendChild(linkText);
+  a.title = title;
+
+  td.appendChild(a);
+  document.body.appendChild(td);
+};
+
 const createLink = (title, href) => {
   const a = document.createElement('a');
   const linkText = document.createTextNode(title);
@@ -29,6 +42,7 @@ describe('#rw-router', () => {
     createLink('home', '/home');
     createLink('another', '/another');
     createLink('nolink', '');
+    createNestedLink('nested', '/nested');
     Router.config();
     Router.listen();
   });
@@ -130,6 +144,14 @@ describe('#rw-router', () => {
       Router.check = check;
       done();
     }, 200);
+  });
+  it('propagates clicks one level', () => {
+    const links = document.querySelectorAll('a');
+    const { navigate } = Router;
+    Router.navigate = sinon.stub();
+    links[4].click();
+    expect(Router.navigate).to.have.been.calledOnce;
+    Router.navigate = navigate;
   });
   after(() => {
     clearInterval(Router.interval);

@@ -7,7 +7,8 @@ export default {
     if (!window.history.pushState) return false;
     // Wire up any <a> tags with a data-href attribute
     document.addEventListener('click', (event) => {
-      const element = event.target;
+      let element = event.target;
+      if ((!element.dataset || !element.dataset.href) && element.parentNode) element = element.parentNode;
       if (element.dataset && element.dataset.href) {
         const location = element.dataset.href;
 
