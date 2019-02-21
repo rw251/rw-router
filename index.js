@@ -3,7 +3,7 @@ export default {
   current: '',
 
   // do something if pushstate is not supported
-  config() {
+  config(callback) {
     if (!window.history.pushState) return false;
     // Wire up any <a> tags with a data-href attribute
     document.addEventListener('click', (event) => {
@@ -13,6 +13,7 @@ export default {
         const location = element.dataset.href;
 
         event.preventDefault();
+        if(callback) callback();
         this.navigate(location);
       }
     });

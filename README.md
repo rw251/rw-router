@@ -20,7 +20,7 @@ index.html
 script.js
 ```js
 import {Router} from 'rw-router'
-Router.config(); // wires everything up - also converts <a> tags with data-href into route links
+Router.config(callback); // wires everything up - also converts <a> tags with data-href into route links. The optional callback executes just prior to navigation following a user click
 Router.navigate(); // navigate to the home page
 Router
  .add('', (callback) => {

@@ -36,6 +36,8 @@ const createLink = (title, href) => {
   document.body.appendChild(a);
 };
 
+const callback = sinon.stub();
+
 describe('#rw-router', () => {
   before(() => {
     createLink('about', '/about');
@@ -43,7 +45,7 @@ describe('#rw-router', () => {
     createLink('another', '/another');
     createLink('nolink', '');
     createNestedLink('nested', '/nested');
-    Router.config();
+    Router.config(callback);
     Router.listen();
   });
   it('responds to link clicks', (done) => {
@@ -152,6 +154,9 @@ describe('#rw-router', () => {
     links[4].click();
     expect(Router.navigate).to.have.been.calledOnce;
     Router.navigate = navigate;
+  });
+  it('executes callback if provided in config', () => {
+    expect(callback).to.have.been.called;
   });
   after(() => {
     clearInterval(Router.interval);
